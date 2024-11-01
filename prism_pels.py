@@ -7,7 +7,7 @@ Authorship and Verification
 
 * **Author:**
 * **Last Modified by:**
-* **Last Reviewed by:** Steve King **Date:** March 6, 2020
+* **Last Reviewed by:** **Date:**
 """
 
 import numpy as np
@@ -28,9 +28,10 @@ parameters = [
     ["length",      "Ang",       1000.0, [0, inf],    "volume", "Length of the flexible cylinder"],
     ["kuhn_length", "Ang",        100.0, [0, inf],    "volume", "Kuhn length of the flexible cylinder"],
     ["radius",      "Ang",         20.0, [0, inf],    "volume", "Radius of the flexible cylinder"],
-    ["sld",         "1e-6/Ang^2",   1.0, [-inf, inf], "sld",    "Cylinder scattering length density"],
-    ["sld_solvent", "1e-6/Ang^2",   6.3, [-inf, inf], "sld",    "Solvent scattering length density"],
+    ["sld",         "1e-6/Ang^2", 10.72, [-inf, inf], "sld",    "Cylinder scattering length density"],
+    ["sld_solvent", "1e-6/Ang^2",  9.42, [-inf, inf], "sld",    "Solvent scattering length density"],
     ["parav",       "",            0.01, [-inf, inf], "",       "Parameter v in PRISM model"  ],
+    ["sigma",       "",             140, [0, inf],    "",       "sigma fit parameter from PRISM"],
     ["conc",        "100*w/w",      1.0, [0, 100],    "",       "Concentration of polymer"],
     ["wamw",        "g mol^-1",   40000, [0, inf],    "",       "Weight-averaged molecular weight" ]
     ]
@@ -43,11 +44,13 @@ def random():
     radius = 10**np.random.uniform(1, 3)
     kuhn_length = 10**np.random.uniform(-2, 0)*length
     parav = 10**np.random.uniform(0, 1)
+    sigma = 10**np.random.uniform(1, 2)
     pars = dict(
         length=length,
         radius=radius,
         kuhn_length=kuhn_length,
         parav=parav,
+        sigma=sigma,
     )
     return pars
 

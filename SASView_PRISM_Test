@@ -1,5 +1,8 @@
 r"""
 
+# Python version of prism_pels model, but sas_J1.c was not converted correctly.
+# plugin is not working in SASView
+
 Authorship and Verification
 ----------------------------
 

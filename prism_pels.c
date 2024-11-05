@@ -33,5 +33,5 @@ Iq(double q,
     const double volume = M_PI*radius*radius*length;
     const double pwlc = Sk_WR(q, length, kuhn_length);
     const double cq = cq_pel(q, kuhn_length, radius, sigma, rc);
-    return 1e8 * nump * pow(contrast, 2) * pwlc * pcs / (1 + parav * cq * pwlc);
+    return 1e-6 * volume * pow(contrast, 2) * pwlc * pcs / (1 + parav * cq * pwlc);
 }

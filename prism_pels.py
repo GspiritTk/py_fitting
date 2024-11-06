@@ -1,22 +1,30 @@
 r"""
 
+Reference: 
+
+Luigi Cannavacciuolo, Jan Skov Pedersen and Peter Schurtenberger, Langmuir 2002, 18, 7, 2922
+
 ----------
 
 Authorship and Verification
 ----------------------------
 
-* **Author:**
-* **Last Modified by:**
+* **Author: Andi X**
+* **Last Modified by: Nov 2024**
 * **Last Reviewed by:** **Date:**
 """
 
 import numpy as np
 from numpy import inf
 
-name = "PRISM_PELs"
-title = " " \
-        "of the cylinder."
+name = "prism_pel"
+title = """
+	Solution of semi-flexible polymer or polyelectrolyte polymer chains, PRISM,
+        """
 description = """
+	This model should work well for semi-flexible polymer or polyelectrolytes with
+	self-avodiance.
+	This model is based on built-in flexible_cylinder model. 
               """
 
 category = "plugin"
@@ -30,12 +38,13 @@ parameters = [
     ["radius",      "Ang",         20.0, [0, inf],    "volume", "Radius of the flexible cylinder"],
     ["sld",         "1e-6/Ang^2", 10.72, [-inf, inf], "sld",    "Cylinder scattering length density"],
     ["sld_solvent", "1e-6/Ang^2",  9.42, [-inf, inf], "sld",    "Solvent scattering length density"],
-    ["parav",        "",            0.01, [-inf, inf], "",       "Parameter v in PRISM model"  ],
+    ["parav",       "",            0.01, [-inf, inf], "",       "Parameter v in PRISM model"  ],
     ["sigma",       "",             140, [0, inf],    "",       "sigma fit parameter from PRISM cq"],
-    ["rc",             "",             10, [0, inf],      "", "rc fit parameter from PRISM cq"],
+    ["rc",          "",              10, [0, inf],    "",       "rc fit parameter from PRISM cq"],
     ["conc",        "100*w/w",      1.0, [0, 100],    "",       "Concentration of polymer"],
     ["wamw",        "g mol^-1",   40000, [0, inf],    "",       "Weight-averaged molecular weight" ]
     ]
+# scale should be number density with unit 1e-7 A^-3 
 # pylint: enable=bad-whitespace, line-too-long
 source = ["lib/polevl.c", "lib/sas_J1.c", "lib/wrc_cyl.c", "prism_pels.c"]
 
@@ -58,7 +67,8 @@ def random():
     return pars
 
 
-# Test values are not verified yet, they are wrong number, ignore them.
+# Test values are not verified in SASView but have been test externally
+# Besides are wrong number, ignore them
 tests = [
     # Accuracy tests based on content in test/utest_other_models.py
     [{'length':     1000.0,  # test T1

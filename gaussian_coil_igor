@@ -1,0 +1,18 @@
+#pragma TextEncoding = "UTF-8"
+#pragma rtGlobals=3		// Use modern global access method and strict wave access.
+#include "IR1_Loader"
+
+
+Function IR1T_GenGauss(Q,radius, par1,par2,par3,par4,par5)		//returns the generalized Gaussian coil
+	variable Q,radius, par1,par2,par3,par4,par5
+	variable Rg=radius
+	variable nu=par1
+	variable U=(2*nu+1)*(2*nu+2)*(Q*Rg)^2/6
+	variable In=(U^(1/2/nu)*gamma(1/2/nu)-gamma(1/nu)-U^(1/2/nu)*gammaInc(1/2/nu,U)+gammaInc(1/nu,U))/nu/U^(1/nu)
+	return sqrt(In)
+end
+
+Function IR1T_GenGaussV(radius, par1,par2,par3,par4,par5)		//returns 1
+	variable radius, par1,par2,par3,par4,par5
+	return 1
+end
